@@ -1,0 +1,37 @@
+import React from "react";
+import Button from "./Button";
+import PostDate from "./PostDate";
+import Link from "next/link";
+
+const Post = ({ publishedDate, slug, title, description }) => {
+  const link = `/blogpost/${slug}`;
+  const date = new Date(publishedDate).toDateString();
+  return (
+    <div className="grid md:grid-cols-4 gap-x-20 my-5">
+      <div className="w-full">
+        <PostDate>{date}</PostDate>
+      </div>
+
+      <div className="md:col-span-3">
+        <a
+          href={link}
+          className="font-primary block transition duration-500 transform hover:-translate-y-2 font-medium md:font-bold text-gray-500 dark:text-gray-300 tracking-wide md:tracking-wider text-lg  md:text-md lg:text-2xl"
+        >
+          {title}
+        </a>
+        <p className="mt-2 font-secondary font-light text-gray-500 dark:text-gray-300 text-sm md:text-md lg:text-lg md:w-2/3">
+          {description}
+        </p>
+        <div className="-ml-4 md:mt-5  text-left">
+          <Link href={link}>
+            <a>
+              <Button>Read More</Button>
+            </a>
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Post;
