@@ -50,7 +50,7 @@ const About = () => {
         <SiGithub className="text-gray-500 text-7xl dark:text-gray-300 md:text-8xl" />
       </div>
       <div className="mt-20 text-center">
-        <Button>View Resume</Button>
+        <Button href="/Resume.pdf" target="_blank">View Resume</Button>
       </div>
     </div>
   );

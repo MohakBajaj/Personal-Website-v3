@@ -1,14 +1,26 @@
 import Social from "../../components/Social";
 import Link from "next/link";
 import Button from "../../components/Button";
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Head from "next/head";
 import Toggle from "../../components/Toggle";
 import Footer from "../../components/Footer";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import cls from "classnames";
 
-export default function Slug({ article }) {
+export default function Slug({ slug }) {
+    const [Fetch, setFetch] = useState(true);
+    const [article, setArticle] = useState({});
+    useEffect(() => {
+        if (Fetch) {
+            fetch(`/api/blogpost?slug=${slug}`).then(res => res.json()).then(data => {
+                setArticle(data);
+                setFetch(false);
+            });
+        }
+
+    })
+
     const [isNavHidden, setIsNavHidden] = useState(true);
     function createMarkup(c) {
         return { __html: c };
@@ -109,14 +121,25 @@ export default function Slug({ article }) {
     )
 }
 
+// export async function getServerSideProps(context) {
+//     const slug = context.query.slug;
+//     const res = await fetch(`http://localhost:3000/api/blogpost?slug=${slug}`);
+//     const article = await res.json();
+//     return (
+//         {
+//             props: {
+//                 article,
+//             },
+//         }
+//     );
+// }
+
 export async function getServerSideProps(context) {
     const slug = context.query.slug;
-    const res = await fetch(`http://localhost:3000/api/blogpost?slug=${slug}`);
-    const article = await res.json();
     return (
         {
             props: {
-                article,
+                slug,
             },
         }
     );

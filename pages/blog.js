@@ -4,7 +4,7 @@ import Social from "../components/Social";
 import Lottie from "react-lottie-player";
 import lottieJson from "../public/hero_animation.json";
 import Button from "../components/Button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import cls from "classnames";
 import Toggle from "../components/Toggle";
@@ -13,7 +13,18 @@ import Post from "../components/Post";
 
 
 
-export default function Blog({ articles }) {
+export default function Blog() {
+    const [articles, setArticles] = useState([]);
+    const [Fetch, setFetch] = useState(true);
+    useEffect(() => {
+        if (Fetch) {
+            fetch("/api/blog").then(res => res.json()).then(data => {
+                setArticles(data);
+                setFetch(false);
+            });
+        }
+    })
+
     const [isNavHidden, setIsNavHidden] = useState(true);
     return (
         <div className="bg-white dark:bg-gray-900">
@@ -120,12 +131,12 @@ export default function Blog({ articles }) {
     );
 }
 
-export async function getServerSideProps() {
-    const res = await fetch("http://localhost:3000/api/blog");
-    const articles = await res.json();
-    return {
-        props: {
-            articles,
-        },
-    };
-}
+// export async function getServerSideProps() {
+//     const res = await fetch("http://localhost:3000/api/blog");
+//     const articles = await res.json();
+//     return {
+//         props: {
+//             articles,
+//         },
+//     };
+// }

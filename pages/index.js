@@ -7,8 +7,19 @@ import Blog from "../components/section/Blog";
 import Contact from "../components/section/Contact";
 import Work from "../components/section/Work";
 import Section from "../components/Section";
+import { useState, useEffect } from "react";
 
-export default function Home({ articles }) {
+export default function Home() {
+  const [articles, setArticles] = useState([]);
+  const [Fetch, setFetch] = useState(true);
+  useEffect(() => {
+    if (Fetch) {
+      fetch("/api/blog?limit=3").then(res => res.json()).then(data => {
+        setArticles(data);
+        setFetch(false);
+      });
+    }
+  })
   return (
     <div className="bg-white dark:bg-gray-900">
       <Head>
@@ -57,15 +68,15 @@ export default function Home({ articles }) {
   );
 }
 
-export async function getServerSideProps() {
-  const res = await fetch(
-    `http://localhost:3000/api/blog/?limit=3`
-  );
-  const articles = await res.json();
+// export async function getServerSideProps() {
+//   const res = await fetch(
+//     `http://localhost:3000/api/blog/?limit=3`
+//   );
+//   const articles = await res.json();
 
-  return {
-    props: {
-      articles,
-    },
-  };
-}
+//   return {
+//     props: {
+//       articles,
+//     },
+//   };
+// }
