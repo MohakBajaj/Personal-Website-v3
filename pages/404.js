@@ -11,7 +11,7 @@ export default function fourohfour() {
             </Head>
             <div className="text-center md:text-left flex justify-center items-center flex-col">
                 <h1 className='font-primary text-7xl text-gray-600 dark:text-gray-300 flex flex-col items-center'>
-                    <span>404</span><span>Not Found</span>
+                    <span>404</span><span>🙇‍♂️Not Found🙇‍♂️</span>
                 </h1>
                 <Link href="/">
                     <a>

@@ -18,7 +18,8 @@
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
     "react-lottie-player": "^1.4.1",
-    "react-toggle-dark-mode": "^1.0.4"
+    "react-toggle-dark-mode": "^1.0.4",
+    "sharp": "^0.30.3"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.6",
