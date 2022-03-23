@@ -11,6 +11,6 @@
 ---
 
 # Lighthouse Report
-![lighthouse](lighthouse.png)\
+![lighthouse](lighthouse.png)
 
 ---
