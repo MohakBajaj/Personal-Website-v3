@@ -13,4 +13,4 @@
 # Lighthouse Report
 ![lighthouse](lighthouse.png)
 
----
+
