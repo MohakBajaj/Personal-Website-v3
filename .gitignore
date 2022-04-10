@@ -14,7 +14,7 @@
 
 # production
 /build
-/prisma/data.db
+prisma\data.db
 
 # misc
 .DS_Store
